@@ -1,13 +1,21 @@
 // SPDX-License-Identifier: GPL
-pragma solidity ^0.5.16;
+pragma solidity ^0.8.0;
 
+contract Boat
+{
 
-contract Proposal{
-
-  struct Option{
-    bytes32 optionName; //up to 32byte long name of option to vote for in proposal
-    uint voteCount; //cumulative votes for said option
+  struct Player_Wager
+  {
+    address add; 
+    uint wager; 
   }
+
+  struct Player_Turn
+  {
+    address add;
+    uint turn;
+  }
+
 
   //dynamically sized array of options for proposal
   Option[] public options;
@@ -35,15 +43,17 @@ contract Proposal{
     }
   }
 
-  //casts a vote where option is the index of the selected option
-  function vote(uint option) external{
+  
+  function assign_turn() external
+  {
+    for (uint i = 0; i < option.length,i++):
+      
     address sender = msg.sender;
     require(!hasVoted[sender], "This address has already voted on this proposal");
     hasVoted[sender] = true;
     options[option].voteCount += 1;
   }
 
-  //computes winning option from proposal by looking at all votes
   function winningOption() public view
             returns (uint winningOption_)
     {
