@@ -4,24 +4,36 @@ pragma solidity ^0.8.0;
 contract Boat
 {
 
-  struct Player_Wager
-  {
-    address add; 
-    uint wager; 
-  }
-
-  struct Player_Turn
+  //struct holds the players address and wager amount
+  struct Player
   {
     address add;
+    uint wager;
     uint turn;
+    uint points;
   }
 
+//may be switched to public later
+  Player[] public player;
 
-  //dynamically sized array of options for proposal
-  Option[] public options;
+  function add_connected_addreses
+  //stores 5 addresses in a private array 'player_addresses_array'
+  //there will be a fucntionaltiy to store incoming players into the array and then remove them based on game events
+  address[5] private player_addresses_array;
 
-  //person who created the proposal
-  address _proposer;
+  Player_Wager[] private play_wage;
+
+  Player_Turn[] private play_turn;
+
+  .push()
+
+  //this address is who holds the testnet tokens and pays out when needed
+  address _treasury;
+
+
+
+  function treasury_pays_player()
+
 
   //name of proposal
   bytes32 _name;
@@ -43,11 +55,11 @@ contract Boat
     }
   }
 
-  
+
   function assign_turn() external
   {
     for (uint i = 0; i < option.length,i++):
-      
+
     address sender = msg.sender;
     require(!hasVoted[sender], "This address has already voted on this proposal");
     hasVoted[sender] = true;

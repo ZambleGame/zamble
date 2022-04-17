@@ -31,6 +31,24 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect((e) => {
+    function genDivs(v) {
+      const e = document.getElementById("gameBoard");
+      console.log(e)
+      for (let i = 0; i < v; i++) {
+        let row = document.createElement("div");
+        row.className = "row";
+        for (let x = 1; x <= v; x++) {
+          let cell = document.createElement("div");
+          cell.className = "gridSquare";
+          row.appendChild(cell);
+        }
+        e.appendChild(row);
+      }
+    }
+    genDivs(6);
+  });
+
   useEffect(() => {
     const { account, isConnected, web3 } = metaState;
     if (account.length && isConnected && web3) {
@@ -112,6 +130,12 @@ export default function Home() {
     }
   }, [metaState, onh]);
 
+  const [className, setClassName] = useState("")
+
+  const myClick = () => {
+    setClassName('clicked')
+  }
+
 
   return (
     <div className={styles.container}>
@@ -137,97 +161,52 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Mint To Vote
+          Wamble
         </h1>
-        <p className={styles.description}>
-          Voting should be easy, transparent, trustless and effecient. With a unique Blockchain based Mint to Vote system...<br /><b>We&apos;re here to do just that.</b></p>
-        <br />
-        <Image src="/logo.png" alt="logo" width="200" height="200" />
-
-        {onh ? (
-          <p className={styles.description}>
-            Đapp connected to the {" "}
-            <code className={styles.code}>
-              {onnet}
-            </code> on the wallet{""}
-            <code className={styles.code}>{metaState.account[0]}</code>
-            {/* options are {""}
-            <code className={styles.code}>{votes}</code> */}
-          </p>
-        ) : (
-          <p className={styles.description}>
-            <b>Not connected to HarmonyOne&apos;s<br />mainnet via MetaMask.</b><br />Let&apos;s fix that!<br />
-            <ol>
-              <li><p>Make sure <a href="https://metamask.io/download">MetaMask</a> is installed</p></li>
-              <li><p><a href="/metamask-harmony">Add HarmonyOne&apos;s mainnet <Image src="/harmonyone.svg" alt="GitHub Logo" width={32} height={16} /></a></p></li>
-              <li><p>Click the MetaMask extension
-                <Image src="/metamask.svg" alt="GitHub Logo" width={32} height={16} />
-              </p></li>
-            </ol>
-          </p>
-        )}
-        {onh ? (
-          <div className={`${styles.grid} ${styles.gridCandidates}`}>
-
-            <div className={styles.card}>
-              <h2>Candidate 1 &rarr;</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum congue libero, ac euismod eros tempus hendrerit.</p>
-              <a className={styles.fancy} id="candidate-one">
-                <span className={styles.topkey}></span>
-                <span className={styles.buttontext}>Vote</span>
-                <span className={styles.bottomkey1}></span>
-                <span className={styles.bottomkey2}></span>
-              </a>
-            </div>
-
-            <div id="candidate-two" className={styles.card}>
-              <h2>Candidate 2 &rarr;</h2>
-              <p>Nam condimentum, mauris sed ullamcorper vestibulum, sem massa porttitor nisi, vel dictum metus turpis a ligula.</p>
-              <a className={styles.fancy} id="candidate-two">
-                <span className={styles.topkey}></span>
-                <span className={styles.buttontext}>Vote</span>
-                <span className={styles.bottomkey1}></span>
-                <span className={styles.bottomkey2}></span>
-              </a>
-            </div>
-          </div>) : (<br />)}
-
-        <h1 className={styles.title}>
-          The Advantages
-        </h1>
-        <div className={styles.grid}>
-          <div className={styles.advantages}>
-            <h2><FaDna size={20} color={'#02E4C0'} /> A single source of truth</h2>
-            <p>To combat duplicate accounts or bots from overriding votes, we have implemented a seamless KYC process.</p>
-          </div>
-          <div className={styles.advantages}>
-            <h2><FaRobot size={20} color={'#02E4C0'} /> KYC Proteted</h2>
-            <p>Utilizing Harmony&apos;s Blockchain, voting can be done in a truly trustless enviroment ensuring the extinction of fradulent votes or miscounts.</p>
-          </div>
-          <div className={styles.advantages}>
-            <h2><FaInfinity size={20} color={'#02E4C0'} /> Possibilities</h2>
-            <p>With transaction feels amounting to ~$0.00001 per txn, and finality times in ~2 seconds this system is infintely scalable, fast and will cost signifigantly less than major campaigns.</p>
-          </div>
+        <div className={styles.gameBoard} id="gameBoard">
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <br />
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <br />
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <br />
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <br />
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <br />
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} onClick={myClick}></div>
+          <br />
         </div>
-
-        <h1 className={styles.title}>
-          Past Elections
-        </h1>
-        <p className={styles.description}>View the results of past elections, who the candidates were, why the ran, explore on chain data of votes, and the complete history of the election.</p>
-        <div className={styles.examplesGrid}>
-          <div className={styles.pastVoteImageHolder}>
-            <Image className={styles.pastVoteImage} alt="Example past vote" src="/ex1.png" width={400} height={400} />
-          </div>
-          <div className={styles.pastVoteImageHolder}>
-            <Image className={styles.pastVoteImage} alt="Example past vote" src="/ex2.png" width={400} height={400} />
-          </div>
-        </div>
-        <a className={styles.fancy}>
-          <span className={styles.topkey}></span>
-          <span className={styles.buttontext}>Coming Soon</span>
-          <span className={styles.bottomkey1}></span>
-          <span className={styles.bottomkey2}></span>
-        </a>
       </main>
 
       <footer className={styles.footer}>
@@ -247,7 +226,7 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             <Image src="/harmony.svg" alt="Harmony Logo" width={72} height={16} /></a>
-        </span>. Made by Kainoa Kanter, Ethan Nguyen, Anish Lathker, and Daniel Lee.
+        </span>. Made by Sebu Eisaian and Kainoa Kanter.
       </footer>
     </div>
   );
