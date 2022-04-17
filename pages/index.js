@@ -4,8 +4,9 @@ import Image from "next/image";
 import { useMetamask } from "use-metamask";
 import { FaDna, FaRobot, FaInfinity } from "react-icons/fa";
 import Web3 from "web3";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 import ProposalContract from "../contracts/Proposal";
+import gameLogic from "./gamecomponent"
 import Eth from "ethjs-query"
 import EthContract from "ethjs-contract"
 
@@ -31,22 +32,23 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect((e) => {
-    function genDivs(v) {
-      const e = document.getElementById("gameBoard");
-      console.log(e)
-      for (let i = 0; i < v; i++) {
-        let row = document.createElement("div");
-        row.className = "row";
-        for (let x = 1; x <= v; x++) {
-          let cell = document.createElement("div");
-          cell.className = "gridSquare";
-          row.appendChild(cell);
-        }
-        e.appendChild(row);
-      }
-    }
-    genDivs(6);
+  useEffect(() => {
+    gameLogic()
+    // function genDivs(v) {
+    //   const e = document.getElementById("gameBoard");
+    //   console.log(e)
+    //   for (let i = 0; i < v; i++) {
+    //     let row = document.createElement("div");
+    //     row.className = "row";
+    //     for (let x = 1; x <= v; x++) {
+    //       let cell = document.createElement("div");
+    //       cell.className = "gridSquare";
+    //       row.appendChild(cell);
+    //     }
+    //     e.appendChild(row);
+    //   }
+    // }
+    // genDivs(6);
   });
 
   useEffect(() => {
@@ -132,19 +134,14 @@ export default function Home() {
 
   const [className, setClassName] = useState("")
 
-  const myClick = () => {
-    setClassName('clicked')
-  }
-
-
   return (
     <div className={styles.container}>
       <Head>
-        <title>Mint to Vote</title>
+        <title>Wamble</title>
         <meta name="title" content="Mint to Vote" />
         <meta name="description" content="Voting should be easy, transparent, trustless and effecient. With a unique Blockchain based Mint to Vote system...we’re here to do just that." />
         <link rel="icon" href="/logo.png" />
-        <meta name="theme-color" content="#4452FE" />
+        <meta name="theme-color" content="#c4a7e7" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="og:type" content="website" />
@@ -164,48 +161,47 @@ export default function Home() {
           Wamble
         </h1>
         <div className={styles.gameBoard} id="gameBoard">
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} id="1"></div>
+          <div className={styles.gridSquare} id="2"></div>
+          <div className={styles.gridSquare} id="3"></div>
+          <div className={styles.gridSquare} id="4"></div>
+          <div className={styles.gridSquare} id="5"></div>
+          <div className={styles.gridSquare} id="6"></div>
           <br />
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} id="7"></div>
+          <div className={styles.gridSquare} id="8"></div>
+          <div className={styles.gridSquare} id="9"></div>
+          <div className={styles.gridSquare} id="10"></div>
+          <div className={styles.gridSquare} id="11"></div>
+          <div className={styles.gridSquare} id="12"></div>
           <br />
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} id="13"></div>
+          <div className={styles.gridSquare} id="14"></div>
+          <div className={styles.gridSquare} id="15"></div>
+          <div className={styles.gridSquare} id="16"></div>
+          <div className={styles.gridSquare} id="17"></div>
+          <div className={styles.gridSquare} id="18"></div>
           <br />
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} id="19"></div>
+          <div className={styles.gridSquare} id="20"></div>
+          <div className={styles.gridSquare} id="21"></div>
+          <div className={styles.gridSquare} id="22"></div>
+          <div className={styles.gridSquare} id="23"></div>
+          <div className={styles.gridSquare} id="24"></div>
           <br />
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
+          <div className={styles.gridSquare} id="25"></div>
+          <div className={styles.gridSquare} id="26"></div>
+          <div className={styles.gridSquare} id="27"></div>
+          <div className={styles.gridSquare} id="28"></div>
+          <div className={styles.gridSquare} id="29"></div>
+          <div className={styles.gridSquare} id="30"></div>
           <br />
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <div className={styles.gridSquare} onClick={myClick}></div>
-          <br />
+          <div className={styles.gridSquare} id="31"></div>
+          <div className={styles.gridSquare} id="32"></div>
+          <div className={styles.gridSquare} id="33"></div>
+          <div className={styles.gridSquare} id="34"></div>
+          <div className={styles.gridSquare} id="35"></div>
+          <div className={styles.gridSquare} id="36"></div>
         </div>
       </main>
 

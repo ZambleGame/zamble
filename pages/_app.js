@@ -1,5 +1,5 @@
 import { MetamaskStateProvider } from "use-metamask";
-import '../styles/globals.css'
+import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
   return <MetamaskStateProvider>{
