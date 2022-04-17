@@ -7,13 +7,13 @@ contract Boat
   //struct holds the players address and wager amount
   struct Player
   {
-    address adres;
+    address add;
     uint wager;
     uint turn;
     uint points;
   }
 
-//may be switched to public later 
+//may be switched to public later
   Player[] public player;
 
   function add_connected_addreses
@@ -27,10 +27,10 @@ contract Boat
 
   .push()
 
-  //this address is who holds the testnet tokens and pays out when needed 
+  //this address is who holds the testnet tokens and pays out when needed
   address _treasury;
 
-  
+
 
   function treasury_pays_player()
 
