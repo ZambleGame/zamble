@@ -160,55 +160,81 @@ export default function Home() {
         <h1 className={styles.title}>
           Wamble
         </h1>
-        <div className={styles.gameBoard} id="gameBoard">
-          <div className={styles.gridSquare} id="1"></div>
-          <div className={styles.gridSquare} id="2"></div>
-          <div className={styles.gridSquare} id="3"></div>
-          <div className={styles.gridSquare} id="4"></div>
-          <div className={styles.gridSquare} id="5"></div>
-          <div className={styles.gridSquare} id="6"></div>
-          <br />
-          <div className={styles.gridSquare} id="7"></div>
-          <div className={styles.gridSquare} id="8"></div>
-          <div className={styles.gridSquare} id="9"></div>
-          <div className={styles.gridSquare} id="10"></div>
-          <div className={styles.gridSquare} id="11"></div>
-          <div className={styles.gridSquare} id="12"></div>
-          <br />
-          <div className={styles.gridSquare} id="13"></div>
-          <div className={styles.gridSquare} id="14"></div>
-          <div className={styles.gridSquare} id="15"></div>
-          <div className={styles.gridSquare} id="16"></div>
-          <div className={styles.gridSquare} id="17"></div>
-          <div className={styles.gridSquare} id="18"></div>
-          <br />
-          <div className={styles.gridSquare} id="19"></div>
-          <div className={styles.gridSquare} id="20"></div>
-          <div className={styles.gridSquare} id="21"></div>
-          <div className={styles.gridSquare} id="22"></div>
-          <div className={styles.gridSquare} id="23"></div>
-          <div className={styles.gridSquare} id="24"></div>
-          <br />
-          <div className={styles.gridSquare} id="25"></div>
-          <div className={styles.gridSquare} id="26"></div>
-          <div className={styles.gridSquare} id="27"></div>
-          <div className={styles.gridSquare} id="28"></div>
-          <div className={styles.gridSquare} id="29"></div>
-          <div className={styles.gridSquare} id="30"></div>
-          <br />
-          <div className={styles.gridSquare} id="31"></div>
-          <div className={styles.gridSquare} id="32"></div>
-          <div className={styles.gridSquare} id="33"></div>
-          <div className={styles.gridSquare} id="34"></div>
-          <div className={styles.gridSquare} id="35"></div>
-          <div className={styles.gridSquare} id="36"></div>
-        </div>
+        {onh ? (
+          <p className={styles.description}>
+            Đapp connected to the {" "}
+            <code className={styles.code}>
+              {onnet}
+            </code> on the wallet{""}
+            <code className={styles.code}>{metaState.account[0]}</code>
+            {/* options are {""}
+            <code className={styles.code}>{votes}</code> */}
+          </p>
+        ) : (
+          <p className={styles.description}>
+            <b>Not connected to HarmonyOne&apos;s<br />testnet via MetaMask.</b><br />Let&apos;s fix that!<br />
+            <ol>
+              <li><p>Make sure <a href="https://metamask.io/download">MetaMask</a> is installed</p></li>
+              <li><p><a href="/metamask-harmony">Add HarmonyOne&apos;s testnet <Image src="/harmonyone.svg" alt="GitHub Logo" width={32} height={16} /></a></p></li>
+              <li><p>Click the MetaMask extension
+                <Image src="/metamask.svg" alt="GitHub Logo" width={32} height={16} />
+              </p></li>
+            </ol>
+          </p>
+        )}
+        {onh ? (
+          <div className={styles.gameBoard} id="gameBoard">
+            <div className={styles.gridSquare} id="1"></div>
+            <div className={styles.gridSquare} id="2"></div>
+            <div className={styles.gridSquare} id="3"></div>
+            <div className={styles.gridSquare} id="4"></div>
+            <div className={styles.gridSquare} id="5"></div>
+            <div className={styles.gridSquare} id="6"></div>
+            <br />
+            <div className={styles.gridSquare} id="7"></div>
+            <div className={styles.gridSquare} id="8"></div>
+            <div className={styles.gridSquare} id="9"></div>
+            <div className={styles.gridSquare} id="10"></div>
+            <div className={styles.gridSquare} id="11"></div>
+            <div className={styles.gridSquare} id="12"></div>
+            <br />
+            <div className={styles.gridSquare} id="13"></div>
+            <div className={styles.gridSquare} id="14"></div>
+            <div className={styles.gridSquare} id="15"></div>
+            <div className={styles.gridSquare} id="16"></div>
+            <div className={styles.gridSquare} id="17"></div>
+            <div className={styles.gridSquare} id="18"></div>
+            <br />
+            <div className={styles.gridSquare} id="19"></div>
+            <div className={styles.gridSquare} id="20"></div>
+            <div className={styles.gridSquare} id="21"></div>
+            <div className={styles.gridSquare} id="22"></div>
+            <div className={styles.gridSquare} id="23"></div>
+            <div className={styles.gridSquare} id="24"></div>
+            <br />
+            <div className={styles.gridSquare} id="25"></div>
+            <div className={styles.gridSquare} id="26"></div>
+            <div className={styles.gridSquare} id="27"></div>
+            <div className={styles.gridSquare} id="28"></div>
+            <div className={styles.gridSquare} id="29"></div>
+            <div className={styles.gridSquare} id="30"></div>
+            <br />
+            <div className={styles.gridSquare} id="31"></div>
+            <div className={styles.gridSquare} id="32"></div>
+            <div className={styles.gridSquare} id="33"></div>
+            <div className={styles.gridSquare} id="34"></div>
+            <div className={styles.gridSquare} id="35"></div>
+            <div className={styles.gridSquare} id="36"></div>
+            <br />
+            <div className={styles.skipButton} id="0">Skip</div>
+          </div>
+        ) : (<div></div>)}
       </main>
 
       <footer className={styles.footer}>
         <span>
           <a
-            href="https://github.com/blockchainuci/hackathon-2022-mint-to-vote-website"
+            href="https://github.com/thatonecalculator/boat"
             target="_blank"
             rel="noopener noreferrer"
           >
