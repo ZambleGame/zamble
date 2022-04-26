@@ -1,65 +1,113 @@
-// SPDX-License-Identifier: GPL
-pragma solidity ^0.8.0;
-import "../Payments.sol";
+pragma solidity >= 0.7.0 < 0.9.0;
 
 contract Boat
 {
 
-  struct Player
-  {
-    address add;
-    uint wager;
-    uint turn;
-    uint points;
-  }
+    address public player1;
+    address public player2;
 
-  address treasury;
+    uint[] private player1_moves;
+    uint[] private player2_moves; 
 
+    uint[] private moves; 
 
-//may be switched to public later
-  Player[] public player;
+    uint[] public verifier_output;
 
-  //function add_connected_addreses
-  //stores 5 addresses in a private array 'player_addresses_array'
-  //there will be a fucntionaltiy to store incoming players into the array and then remove them based on game events
-  //address[5] private player_addresses_array;
+    uint8 private move;
 
-  
-
-  //.push()
-
-
-
-
-  function assign_turn() external
-  {
-    for (uint i = 0; i < option.length,i++):
-
-    address sender = msg.sender;
-    require(!hasVoted[sender], "This address has already voted on this proposal");
-    hasVoted[sender] = true;
-    options[option].voteCount += 1;
-  }
-
-  function winningOption() public view
-            returns (uint winningOption_)
+    bool public gameOver;
+    
+    struct GameState
     {
-        uint winningOptionCount = 0;
-        for (uint p = 0; p < options.length; p++) {
-            if (options[p].voteCount >= winningOptionCount) {
-                winningOptionCount = options[p].voteCount;
-                winningOption_ = p;
-            }
+        uint8 spot_selected;
+        address whoseTurn;
+    }
+
+    GameState public state;
+
+    event GameStarted();
+    event MoveMade(address player, uint8 selection);
+
+    msg.sender = player1;
+
+    address public loser 
+
+    function move(uint value) public
+    {
+        require(!gameOver,"Game Concluded");
+
+        require(msg.sender == state.whoseTurn,"Currently Other Players Turn");
+
+        //adding the move to the array of all game moves 
+
+        moves.push(value);
+
+        //solidity verifier contract that will return an output 
+        //verifier_output = Verifier(moves);
+
+        if (moves[-1]==0 and moves[-2]==0)
+        {
+            gameOver = true;
+        }
+
+        if (verifier_output == 1)
+        {
+            loser = msg.sender
+            gameOver = true;
+        }        
+
+        if msg.sender == player1
+        {
+            player1_moves.push(value)
+        }
+        else
+        {
+            player2_moves.push(value)
         }
     }
 
-    // Calls winningProposal() function to get the index
-    // of the winner contained in the proposals array and then
-    // returns the name of the winner
-    function winnerName() external view
-            returns (bytes32 winnerName_)
+    address public winner;
+
+    function Winner(uint moves1[],uint moves2[],address player1, address player2, address winner, address loser)
     {
-        winnerName_ = options[winningOption()].optionName;
+        require(gameOver,"Game must be over to start determining winner");
+
+        if loser == player1
+        {
+            winner = player2;
+        }
+        
+        if loser == player2
+        {
+            winner = player1;
+        }
+
+        for (uint i=0; i<moves1.length; i++)
+        {
+            if moves1[i] == 0
+            {
+                
+            }
+        }
+
+        for (uint i=0; i<moves2.length; i++)
+        {
+            if moves2[i] == 0
+            {
+                
+            }
+        }
+
+        if moves1.length > moves2.length
+        {
+            winner = player1;
+        }
+
+        if moves2.length > moves1.length
+        {
+            winner = player2;
+        }
+
+        return winner;
     }
 }
-

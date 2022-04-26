@@ -6,7 +6,6 @@ import { FaDna, FaRobot, FaInfinity } from "react-icons/fa";
 import Web3 from "web3";
 import styles from "../styles/Home.module.scss";
 import ProposalContract from "../contracts/Proposal";
-import gameLogic from "./gamecomponent"
 import Eth from "ethjs-query"
 import EthContract from "ethjs-contract"
 
@@ -33,7 +32,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    gameLogic()
+    // gameLogic()
     // function genDivs(v) {
     //   const e = document.getElementById("gameBoard");
     //   console.log(e)
@@ -94,30 +93,29 @@ export default function Home() {
           const miniToken = MiniToken.at(address);
           console.log(miniToken)
           if (onh) {
-            listenForClicksOnOne(miniToken);
-            listenForClicksOnTwo(miniToken);
+            listenForClicks(miniToken);
           }
           return
         }
-        function listenForClicksOnOne(miniToken) {
-          var button = document.getElementById("candidate-one")
-          button.addEventListener('click', function () {
-            return miniToken.vote(0, { from: metaState.account[0] }).then(function (txHash) {
-              console.log('Transaction sent')
-              console.dir(txHash)
-              waitForTxToBeMined(txHash)
-            }).catch(console.error)
-          }, false)
+        function listenForClicks(miniToken) {
+          const btns = document.querySelectorAll('.Home_gridSquare__f05MN')
+          console.log(btns)
+          btns.forEach(button => {
+            button.addEventListener('click', event => {
+              button.classList.add('Home_clickedGridSquare__65IN0')
+              console.log(button.id)
+              console.log(styles)
+              return miniToken.vote(parseInt(button.id), { from: metaState.account[0] }).then(function (txHash) {
+                console.log('Transaction sent')
+                console.dir(txHash)
+                waitForTxToBeMined(txHash)
+              }).catch(console.error)
+            });
+
+          });
         }
-        function listenForClicksOnTwo(miniToken) {
-          var button = document.getElementById("candidate-two")
-          button.addEventListener('click', function () {
-            return miniToken.vote(1, { from: address }).then(function (txHash) {
-              console.log('Transaction sent')
-              console.dir(txHash)
-              waitForTxToBeMined(txHash)
-            }).catch(console.error)
-          }, false)
+        function getClickedSquares() {
+          return document.querySelectorAll('.Home_clickedGridSquare__65IN0');
         }
         startApp(web3);
         async function waitForTxToBeMined(txHash) {
@@ -137,10 +135,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Wamble</title>
+        <title>Zamble</title>
         <meta name="title" content="Mint to Vote" />
         <meta name="description" content="Voting should be easy, transparent, trustless and effecient. With a unique Blockchain based Mint to Vote system...we’re here to do just that." />
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/logo.svg" />
         <meta name="theme-color" content="#c4a7e7" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -157,9 +155,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Wamble
-        </h1>
+        <img src="/logo.svg" height="100rem" alt="Zamble" />
+        <h2>Zamble</h2>
         {onh ? (
           <p className={styles.description}>
             Đapp connected to the {" "}
